@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RBlog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><h1>rBlog</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            
+            <li class="<%= params[:controller] == '' ? 'active' : ' ' %> nav-link">
+              <%= link_to 'Home', root_path %>
+            </li>
+            <li class="<%= params[:controller] == 'about' ? 'active' : '' %> nav-link">
+              <%= link_to 'About', about_path%>
+            </li>
+            <li class="<%= params[:controller] == 'contact' ? 'active' : '' %> nav-link">
+              <%= link_to 'Contact', contact_path %>
+
+              <%
+=begin%>
+ <a class="nav-link" href="contact.html">Contact</a> 
+<%
+=end%>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+
+                        
+                        <!--Alerts & Messages-->
+                        <% if flash[:notice] %>
+                          <div class="alert alert-success"><%= flash[:notice] %></div>
+                        <%end%>
+
+                        <% if flash[:alert] %>
+                          <div class="alert alert-danger"><%= flash[:alert] %></div>
+                        <%end%>
+
+                        <%= yield %>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <%= render 'partials/sidebar' %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <%= render 'partials/footer' %>
+
+
+
+        <script src="js/bootstrap.js"></script>
+
+  </body>
+</html>
